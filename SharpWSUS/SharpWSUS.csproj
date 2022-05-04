@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42CABB74-1199-40F1-9354-6294BBA8D3A4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SharpWSUS</RootNamespace>
+    <AssemblyName>SharpWSUS</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Args\ArgumentParser.cs" />
+    <Compile Include="Args\ArgumentParserResult.cs" />
+    <Compile Include="Args\CommandCollection.cs" />
+    <Compile Include="Args\Info.cs" />
+    <Compile Include="Commands\Approve.cs" />
+    <Compile Include="Commands\Check.cs" />
+    <Compile Include="Commands\Create.cs" />
+    <Compile Include="Commands\Delete.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Locate.cs" />
+    <Compile Include="Commands\Inspect.cs" />
+    <Compile Include="lib\Build.cs" />
+    <Compile Include="lib\Connect.cs" />
+    <Compile Include="lib\Enum.cs" />
+    <Compile Include="lib\ClFile.cs" />
+    <Compile Include="lib\Group.cs" />
+    <Compile Include="lib\ClGuid.cs" />
+    <Compile Include="lib\Reg.cs" />
+    <Compile Include="lib\Server.cs" />
+    <Compile Include="lib\Status.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
