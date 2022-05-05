@@ -1,6 +1,6 @@
 # SharpWSUS
 
-SharpWSUS is a CSharp tool for lateral movement through WSUS. There is a corresponding blog on the Nettitude labs website (https://labs.nettitude.com/) which has more detailed information about the tooling, use case and detection.
+SharpWSUS is a CSharp tool for lateral movement through WSUS. There is a corresponding blog (https://labs.nettitude.com/blog/introducing-sharpwsus/) which has more detailed information about the tooling, use case and detection.
 
 ## Credits 
 
