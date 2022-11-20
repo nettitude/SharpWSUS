@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Data.SqlClient;
 
 public class Server
 {
@@ -12,7 +13,7 @@ public class Server
     public static int iPortNumber;
     public static bool bSSL;
     public static string sTargetComputerID;
-    public static int sTargetComputerTargetID; 
+    public static int sTargetComputerTargetID;
 
     public static void GetServerDetails()
     {
@@ -24,22 +25,27 @@ public class Server
     }
     public static void FvContentDirectory()
     {
-        string sContentDirectoryTemp = string.Empty;
-        sContentDirectoryTemp = Reg.RegistryWOW6432.GetRegKey64(Reg.RegHive.HKEY_LOCAL_MACHINE, @"SOFTWARE\Microsoft\Update Services\Server\setup", "ContentDir");
-        if (sContentDirectoryTemp == "ERROR_FILE_NOT_FOUND")
+        SqlCommand sqlComm = new SqlCommand();
+        sqlComm.Connection = Connect.FsqlConnection();
+        SqlDataReader sqldrReader;
+        sqlComm.CommandText = "exec spConfiguration";
+        try
         {
-            sContentDirectoryTemp = Reg.RegistryWOW6432.GetRegKey32(Reg.RegHive.HKEY_LOCAL_MACHINE, @"SOFTWARE\Microsoft\Update Services\Server\setup", "ContentDir");
-            if (sContentDirectoryTemp == "ERROR_FILE_NOT_FOUND")
+            //Gather Information via SQL
+            sqldrReader = sqlComm.ExecuteReader();
+            if (sqldrReader.Read())
             {
-                bWSUSInstalled = false;
-                Console.WriteLine("Something went wrong, unable to detect SQL details from registry.");
-                return;
+                Server.sLocalContentCacheLocation = (string)sqldrReader.GetValue(sqldrReader.GetOrdinal("LocalContentCacheLocation"));
+                Console.WriteLine(Server.sLocalContentCacheLocation);
+                sqldrReader.Close();
             }
         }
-        sContentDirectoryTemp = HEX2ASCII(sContentDirectoryTemp);
-        sContentDirectoryTemp = ReverseString(sContentDirectoryTemp);
-        sLocalContentCacheLocation = Environment.ExpandEnvironmentVariables(sContentDirectoryTemp);
-        return;
+        catch (Exception e)
+        {
+            Console.WriteLine("\r\nFunction error - FvContentDirectory.");
+
+            Console.WriteLine($"Error Message: {e.Message}");
+        }
     }
     public static void FvFullComputerName()
     {

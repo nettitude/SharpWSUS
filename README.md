@@ -9,6 +9,9 @@ Massive credit to the below resources that really did 90% of this for me. This t
 * https://github.com/AlsidOfficial/WSUSpendu - powershell tool for abusing WSUS
 * https://github.com/ThunderGunExpress/Thunder_Woosus - Csharp tool for abusing WSUS
 
+## Building
+This project requires .NET Framework v4.0. You can download that here: https://dotnet.microsoft.com/en-us/download/dotnet-framework/net40. It may work with newer versions of .NET, however, it's not been tested.
+
 ## Help Menu
 
 ```
